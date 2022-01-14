@@ -6,13 +6,14 @@ describe Exam do
 
   let(:answers) do
 
-  allow(answer1).to receive(:correct?).and_return(true)
+    allow(answer1).to receive(:correct?).and_return(true)
 
     [
       answer1,
       answer1,
       answer1
     ]
+    
   end
 
   subject(:exam) { Exam.new(Date.today, answers) }

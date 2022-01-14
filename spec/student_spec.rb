@@ -5,6 +5,8 @@ require 'feedback'
 describe Student do
   subject(:student) { Student.new }
 
+  let(:feedback1) { double :Feedback }
+
   describe '#full_name' do
     it 'returns the student first name and last name' do
       student = Student.new(first_name: "Sian", last_name: "McAvoy")
@@ -19,9 +21,11 @@ describe Student do
 
   describe '#happiness' do
     it 'returns the average happiness reported' do
-      feedback_1 = Feedback.new(4, Date.today)
-      feedback_2 = Feedback.new(4, Date.today)
-      student = Student.new(feedbacks: [feedback_1, feedback_2])
+      allow(feedback1).to receive(:happiness).and_return(4)
+
+      # feedback_1 = Feedback.new(4, Date.today)
+      # feedback_2 = Feedback.new(4, Date.today)
+      student = Student.new(feedbacks: [feedback1, feedback1])
 
       expect(student.happiness).to eq 4
     end
