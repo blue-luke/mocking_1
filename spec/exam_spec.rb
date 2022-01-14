@@ -1,12 +1,17 @@
 require 'exam'
-require 'answer'
+# require 'answer'
 
 describe Exam do
+  let(:answer1) { double :answer}
+
   let(:answers) do
+
+  allow(answer1).to receive(:correct?).and_return(true)
+
     [
-      Answer.new(5, 5),
-      Answer.new(7, 7),
-      Answer.new(1, 1)
+      answer1,
+      answer1,
+      answer1
     ]
   end
 
