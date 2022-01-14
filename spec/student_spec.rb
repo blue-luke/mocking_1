@@ -23,8 +23,6 @@ describe Student do
     it 'returns the average happiness reported' do
       allow(feedback1).to receive(:happiness).and_return(4)
 
-      # feedback_1 = Feedback.new(4, Date.today)
-      # feedback_2 = Feedback.new(4, Date.today)
       student = Student.new(feedbacks: [feedback1, feedback1])
 
       expect(student.happiness).to eq 4
