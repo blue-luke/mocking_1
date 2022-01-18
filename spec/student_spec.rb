@@ -7,6 +7,9 @@ describe Student do
 
   let(:feedback1) { double :Feedback }
 
+  let(:answer1) { double :Answer }
+  let(:answer2) { double :Answer }
+
   describe '#full_name' do
     it 'returns the student first name and last name' do
       student = Student.new(first_name: "Sian", last_name: "McAvoy")
@@ -35,8 +38,11 @@ describe Student do
 
   describe '#exam_scores' do
     it 'returns all exam scores' do
-      exam_1 = Exam.new(Date.today, [Answer.new(5, 5)])
-      exam_2 = Exam.new(Date.today, [Answer.new(6, 6)])
+      allow(answer1).to receive(:correct?).and_return(true)
+      allow(answer2).to receive(:correct?).and_return(true)
+
+      exam_1 = Exam.new(Date.today, [answer1])
+      exam_2 = Exam.new(Date.today, [answer2])
       student = Student.new(exams: [exam_1, exam_2])
 
       expect(student.exam_scores).to eq({ "#{ Date.today.to_s }" => [1, 1] })
