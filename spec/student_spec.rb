@@ -10,6 +10,9 @@ describe Student do
   let(:answer1) { double :Answer }
   let(:answer2) { double :Answer }
 
+  let(:exam1) { double :Exam }
+  let(:exam2) { double :Exam }
+
   describe '#full_name' do
     it 'returns the student first name and last name' do
       student = Student.new(first_name: "Sian", last_name: "McAvoy")
@@ -41,9 +44,13 @@ describe Student do
       allow(answer1).to receive(:correct?).and_return(true)
       allow(answer2).to receive(:correct?).and_return(true)
 
-      exam_1 = Exam.new(Date.today, [answer1])
-      exam_2 = Exam.new(Date.today, [answer2])
-      student = Student.new(exams: [exam_1, exam_2])
+      allow(exam1).to receive(:pretty_date_taken).and_return(Date.today.to_s)
+      allow(exam1).to receive(:score).and_return(1)
+
+      allow(exam2).to receive(:pretty_date_taken).and_return(Date.today.to_s)
+      allow(exam2).to receive(:score).and_return(1)
+
+      student = Student.new(exams: [exam1, exam2])
 
       expect(student.exam_scores).to eq({ "#{ Date.today.to_s }" => [1, 1] })
     end
