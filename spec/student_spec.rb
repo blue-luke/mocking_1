@@ -7,9 +7,6 @@ describe Student do
 
   let(:feedback1) { double :Feedback }
 
-  let(:answer1) { double :Answer }
-  let(:answer2) { double :Answer }
-
   let(:exam1) { double :Exam }
   let(:exam2) { double :Exam }
 
@@ -41,9 +38,6 @@ describe Student do
 
   describe '#exam_scores' do
     it 'returns all exam scores' do
-      allow(answer1).to receive(:correct?).and_return(true)
-      allow(answer2).to receive(:correct?).and_return(true)
-
       allow(exam1).to receive(:pretty_date_taken).and_return(Date.today.to_s)
       allow(exam1).to receive(:score).and_return(1)
 
